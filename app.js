@@ -8,19 +8,15 @@ let mapService;
 let objectManager;
 let boundaries;
 
-
 async function onInit() {
     onInitYmapsAPI();
 }
-
-
 
 async function onInitYmapsAPI() {
     const isMobile = getDeviceMobile();
     const mapOptions = { state, options: { ...(isMobile ? { balloonPanelMaxMapArea: Infinity, ...options } : options) }, config };
     mapService = new YMapsMapService('map', mapOptions);
     mapService.ready.then(async (yaMap) => {
-        console.log('INIT')
         map = yaMap;
         document.querySelector('#map-container').setAttribute('data-load', true);
         objectManager = new ymaps.ObjectManager();
